@@ -63,4 +63,53 @@ const generateMCQ = (subject) => {
   return mcqs[randomIndex];
 };
 
-module.exports = { generateMCQ };
+const generateQuiz = (subject, count = 10) => {
+  // ... quiz generation logic ..
+  router.post('/generate-batch', async (req, res) => {
+  try {
+    const { userId, subject } = req.body;
+
+    if (!userId || !subject) {
+      return res.status(400).json({ message: 'User ID and subject are required' });
+    }
+
+    // Generate quiz with 10 questions
+    const quiz = generateQuiz(subject, 10);
+
+    // Save all MCQs to database
+    const savedMCQs = await Promise.all(
+      quiz.mcqs.map(async (mcq) => {
+        const newMCQ = new MCQ({
+          userId,
+          subject,
+          question: mcq.question,
+          options: mcq.options,
+          answer: mcq.answer,
+          explanation: mcq.explanation,
+          questionNumber: mcq.questionNumber
+        });
+        await newMCQ.save();
+        return newMCQ;
+      })
+    );
+
+    // Return quiz without answers
+    res.status(201).json({
+      quizId: quiz._id,
+      title: quiz.title,
+      subject: quiz.subject,
+      totalQuestions: quiz.totalQuestions,
+      mcqs: savedMCQs.map(mcq => ({
+        _id: mcq._id,
+        question: mcq.question,
+        options: mcq.options,
+        questionNumber: mcq.questionNumber
+      }))
+    });
+  } catch (error) {
+    console.error('Generate batch MCQ error:', error);
+    res.status(500).json({ message: 'Error generating MCQs' });
+  }
+});
+}
+module.exports = { generateMCQ, generateQuiz };
