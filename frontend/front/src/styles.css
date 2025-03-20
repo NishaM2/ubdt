@@ -1,0 +1,297 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+}
+
+.container.dashboard {
+  max-width: 800px;
+}
+
+.auth-form, .mcq-form {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #4CAF50;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #2196F3;
+  color: white;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.message {
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 4px;
+  text-align: center;
+  display: none;
+}
+
+.message.error {
+  background-color: #ffebee;
+  color: #c62828;
+  display: block;
+}
+
+.message.success {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  display: block;
+}
+
+/* Dashboard specific styles */
+.user-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.generate-section {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 10px;
+  align-items: end;
+}
+
+.mcq-section {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.question-box {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.question-box h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.options-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.option-item:hover {
+  background-color: #f0f0f0;
+}
+
+.option-item input[type="radio"] {
+  width: auto;
+}
+
+.feedback-section {
+  margin-top: 20px;
+}
+
+.feedback-box {
+  padding: 15px;
+  border-radius: 4px;
+  margin-top: 20px;
+}
+
+.feedback-box.correct {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.feedback-box.incorrect {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.explanation {
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.history-section {
+  margin-top: 30px;
+}
+
+.history-item {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.history-item h4 {
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.history-item p {
+  color: #666;
+  font-size: 14px;
+} 
+.quiz-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.quiz-progress {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.question-box {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.option-button {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.option-button:hover {
+  background-color: #f5f5f5;
+  border-color: #4CAF50;
+}
+
+.quiz-results {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.score-card {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.results-breakdown {
+  margin-top: 30px;
+}
+
+.result-item {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border-left: 4px solid #ddd;
+}
+
+.result-item.correct {
+  border-left-color: #4CAF50;
+}
+
+.result-item.incorrect {
+  border-left-color: #f44336;
+}
+
+.explanation {
+  font-style: italic;
+  color: #666;
+  margin-top: 10px;
+}

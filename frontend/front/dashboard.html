@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQ Platform - Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container dashboard">
+        <div class="mcq-form">
+            <h1>MCQ Dashboard</h1>
+            
+            <div class="user-info">
+                <span id="welcomeMessage">Welcome!</span>
+                <a href="index.html" id="logoutBtn" class="btn btn-secondary">Logout</a>
+            </div>
+
+            <div class="generate-section">
+                <div class="form-group">
+                    <label for="subject">Select Subject</label>
+                    <select id="subject" name="subject" required>
+                        <option value="">Choose a subject</option>
+                        <option value="math">Mathematics</option>
+                        <option value="science">Science</option>
+                    </select>
+                </div>
+                <button id="generateBtn" class="btn btn-primary">Generate MCQ</button>
+                <a href="#" id="historyBtn" class="btn btn-secondary">View History</a>
+            </div>
+
+            <div id="mcqSection" class="mcq-section" style="display: none;">
+                <div class="question-box">
+                    <h2 id="question">Question will appear here</h2>
+                    <div id="options" class="options-group">
+                        <!-- Options will be dynamically added here -->
+                    </div>
+                </div>
+
+                <button id="submitBtn" class="btn btn-primary">Submit Answer</button>
+            </div>
+
+            <div id="feedbackSection" class="feedback-section" style="display: none;">
+                <div class="feedback-box">
+                    <h3>Feedback</h3>
+                    <p id="feedbackMessage"></p>
+                    <p id="explanation" class="explanation"></p>
+                </div>
+            </div>
+
+            <div id="historySection" class="history-section" style="display: none;">
+                <h3>Your MCQ History</h3>
+                <div id="historyList">
+                    <!-- History items will be dynamically added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/mcq.js"></script>
+</body>
+</html> 
