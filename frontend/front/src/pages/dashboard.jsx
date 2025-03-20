@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import MCQ from '../components/mcq';
+import Quiz from '../components/quiz';
 
 function Dashboard() {
   const [subject, setSubject] = useState('');
-  const [currentMCQ, setCurrentMCQ] = useState(null);
+  const [quizMCQs, setQuizMCQs] = useState(null);
   const [history, setHistory] = useState([]);
   const [showHistory, setShowHistory] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -27,7 +27,7 @@ function Dashboard() {
     navigate('/');
   };
 
-  const handleGenerateMCQ = async () => {
+  const handleGenerateQuiz = async () => {
     if (!subject) {
       setError('Please select a subject');
       return;
@@ -36,6 +36,7 @@ function Dashboard() {
     setLoading(true);
     setError('');
     setShowHistory(false);
+    setQuizMCQs(null);
 
     try {
       const response = await axios.post('http://localhost:3000/api/mcq/generate', {
@@ -43,9 +44,10 @@ function Dashboard() {
         subject
       });
 
-      setCurrentMCQ(response.data);
+      // The response includes title, subject, totalQuestions, and mcqs array
+      setQuizMCQs(response.data.mcqs);
     } catch (err) {
-      setError(err.response?.data?.message || 'Failed to generate MCQ. Please try again.');
+      setError(err.response?.data?.message || 'Failed to generate quiz. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -54,7 +56,7 @@ function Dashboard() {
   const handleViewHistory = async () => {
     setLoading(true);
     setError('');
-    setCurrentMCQ(null);
+    setQuizMCQs(null);
 
     try {
       const response = await axios.get(`http://localhost:3000/api/mcq/history?userId=${userId}`);
@@ -70,8 +72,10 @@ function Dashboard() {
   return (
     <div className="dashboard-container">
       <div className="dashboard-header">
-        <h1>MCQ Dashboard</h1>
-        <button onClick={handleLogout} className="btn btn-secondary">Logout</button>
+        <h1>MCQ Quiz Dashboard</h1>
+        <button onClick={handleLogout} className="btn btn-secondary">
+          Logout
+        </button>
       </div>
 
       <div className="controls-section">
@@ -91,11 +95,11 @@ function Dashboard() {
 
         <div className="button-group">
           <button
-            onClick={handleGenerateMCQ}
+            onClick={handleGenerateQuiz}
             className="btn btn-primary"
             disabled={loading || !subject}
           >
-            {loading ? 'Generating...' : 'Generate MCQ'}
+            {loading ? 'Generating Quiz...' : 'Generate Quiz'}
           </button>
           <button
             onClick={handleViewHistory}
@@ -114,15 +118,15 @@ function Dashboard() {
       )}
 
       <div className="content-section">
-        {currentMCQ && !showHistory && (
-          <MCQ mcq={currentMCQ} />
+        {quizMCQs && !showHistory && (
+          <Quiz mcqs={quizMCQs} />
         )}
 
         {showHistory && (
           <div className="history-section">
-            <h2>Your MCQ History</h2>
+            <h2>Your Quiz History</h2>
             {history.length === 0 ? (
-              <p>No MCQs attempted yet</p>
+              <p>No quizzes attempted yet</p>
             ) : (
               <div className="history-list">
                 {history.map((mcq) => (
