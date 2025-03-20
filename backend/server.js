@@ -1,10 +1,15 @@
 const express = require('express');
+const cors = require('cors')
 const path = require('path');
 const connectDB = require('./config/db');
 
 // Initialize Express app
 const app = express();
+app.use(cors())
 
+app.get('/test', (req, res) => {
+  res.json({ message: 'cors working'})
+})
 // Connect to MongoDB
 connectDB();
 
