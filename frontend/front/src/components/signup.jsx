@@ -47,19 +47,24 @@ function Signup() {
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-form">
-        <h2>Create an Account</h2>
-        
+    <div className="auth-container flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="auth-form bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+        <h2 className="text-2xl font-bold text-center text-gray-800 mb-4">
+          Create an Account
+        </h2>
+  
         {error && (
-          <div className="error-message">
+          <div className="error-message bg-red-100 text-red-700 p-3 rounded-md mb-3 text-sm">
             {error}
           </div>
         )}
-
-        <form onSubmit={handleSubmit}>
+  
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Username Field */}
           <div className="form-group">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username" className="block font-medium text-gray-700">
+              Username
+            </label>
             <input
               type="text"
               id="username"
@@ -70,11 +75,15 @@ function Signup() {
               required
               minLength="3"
               disabled={loading}
+              className="w-full mt-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 disabled:opacity-50"
             />
           </div>
-
+  
+          {/* Password Field */}
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password" className="block font-medium text-gray-700">
+              Password
+            </label>
             <input
               type="password"
               id="password"
@@ -85,27 +94,30 @@ function Signup() {
               required
               minLength="6"
               disabled={loading}
+              className="w-full mt-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 disabled:opacity-50"
             />
-            <small className="form-text">Password must be at least 6 characters long</small>
+            <small className="text-gray-500 text-sm">Password must be at least 6 characters long</small>
           </div>
-
-          <button 
-            type="submit" 
-            className="btn btn-primary"
+  
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition disabled:opacity-50"
             disabled={loading}
           >
             {loading ? 'Creating Account...' : 'Sign Up'}
           </button>
         </form>
-
-        <div className="auth-links">
+  
+        {/* Login Link */}
+        <div className="auth-links text-center mt-4 text-gray-600">
           <p>
-            Already have an account? <Link to="/">Login</Link>
+            Already have an account? <Link to="/" className="text-blue-600 hover:underline">Login</Link>
           </p>
         </div>
       </div>
     </div>
   );
-}
+}  
 
 export default Signup;

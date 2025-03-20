@@ -40,19 +40,19 @@ function Login() {
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-form">
-        <h2>Login to MCQ Platform</h2>
-        
+    <div className="auth-container flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-purple-500">
+      <div className="auth-form bg-white/20 backdrop-blur-lg shadow-lg p-8 rounded-lg w-full max-w-md">
+        <h2 className="text-white text-2xl font-bold text-center mb-6">Login to MCQ Platform</h2>
+  
         {error && (
-          <div className="error-message">
+          <div className="error-message bg-red-100 text-red-700 p-3 rounded-md mb-4">
             {error}
           </div>
         )}
-
-        <form onSubmit={handleSubmit}>
+  
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div className="form-group">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username" className="text-white font-medium">Username</label>
             <input
               type="text"
               id="username"
@@ -62,11 +62,12 @@ function Login() {
               placeholder="Enter your username"
               required
               disabled={loading}
+              className="w-full p-3 bg-white/70 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 disabled:bg-gray-200"
             />
           </div>
-
+  
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password" className="text-white font-medium">Password</label>
             <input
               type="password"
               id="password"
@@ -76,26 +77,26 @@ function Login() {
               placeholder="Enter your password"
               required
               disabled={loading}
+              className="w-full p-3 bg-white/70 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 disabled:bg-gray-200"
             />
           </div>
-
-          <button 
-            type="submit" 
-            className="btn btn-primary"
+  
+          <button
+            type="submit"
+            className="btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-md transition duration-300 disabled:bg-gray-400"
             disabled={loading}
           >
             {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
-
-        <div className="auth-links">
+  
+        <div className="auth-links mt-4 text-center text-white">
           <p>
-            Don't have an account? <Link to="/signup">Sign up</Link>
+            Don't have an account? <Link to="/signup" className="underline font-medium">Sign up</Link>
           </p>
         </div>
       </div>
     </div>
   );
-}
-
-export default Login;
+}  
+  export default Login;
